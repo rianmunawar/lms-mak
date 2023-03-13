@@ -1,0 +1,47 @@
+name: PHP Composer Deploy
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+permissions:
+  contents: read
+
+jobs:
+  build and deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@3.1.2
+        with:
+          # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
+          ftp-server: ${{secret.SERVER}}
+          # FTP account username
+          ftp-username: ${{secret.USERNAME}}
+          # FTP account password
+          ftp-password: ${{secret.PASSWORD}}
+          exclude: |
+            **/.git*
+            **/.env*
+            **/.git*/**
+            **/node_modules/**
