@@ -35,11 +35,11 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@3.1.2
         with:
           # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
-          ftp-server: ${{secret.SERVER}}
+          ftp-server: ${{secrets.SERVER}}
           # FTP account username
-          ftp-username: ${{secret.USERNAME}}
+          ftp-username: ${{secrets.USERNAME}}
           # FTP account password
-          ftp-password: ${{secret.PASSWORD}}
+          ftp-password: ${{secrets.PASSWORD}}
           exclude: |
             **/.git*
             **/.env*
