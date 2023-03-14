@@ -1,15 +1,15 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-    'dsn'	=> '',
-    'hostname' => '',
-    'username' => '',
-    'password' => '',
-    'database' => '',
+    'dsn'    => '',
+    'hostname' => 'localhost',
+    'username' => 'makd5356_adminmakdhi',
+    'password' => '@Makdhiproject22',
+    'database' => 'makd5356_simakdhi',
     'dbdriver' => 'mysqli',
     'dbprefix' => '',
     'pconnect' => FALSE,
