@@ -45,6 +45,5 @@ jobs:
           ftp-password: ${{secrets.PASSWORD}}
           exclude: |
             **/.git*
-            **/.env*
             **/.git*/**
             **/node_modules/**
