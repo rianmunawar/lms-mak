@@ -1,4 +1,4 @@
-name: PHP Composer Deploy
+name: 🚀 PHP Composer Deploy
 
 on:
   push:
@@ -10,9 +10,9 @@ permissions:
   contents: read
 
 jobs:
-  build_deploy:
+  web-deploy:
+    name: 🎉 Deployment
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -34,8 +34,8 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@3.1.2
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
           # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
           ftp-server: ${{secrets.SERVER}}
